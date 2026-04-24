@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>catsoncars.work</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .neon {
+      color: #00ff9f;
+      text-shadow: 0 0 5px #00ff9f, 0 0 12px #00ff9f;
+    }
+
+    .cursor::after {
+      content: "_";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    .fade-out {
+      animation: fadeOut 0.8s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    .glow-box {
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .glow-box:hover {
+      box-shadow: 0 0 15px #00ff9f;
+      transform: translateY(-2px);
+    }
+
+    .hidden-section {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-green-400 min-h-screen flex flex-col">
+
+  <!-- Top Bar -->
+  <div class="flex justify-between px-4 py-2 border-b border-green-500">
+    <div class="neon text-sm">catsoncars.work</div>
+
+    <div class="flex gap-6 text-sm">
+      <a href="projects.html" class="neon hover:text-white">[ ./projects ]</a>
+      <a href="blog.html" class="neon hover:text-white">[ ./blog ]</a>
+      <a href="about.html" class="neon hover:text-white">[ ./contact ]</a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-grow p-6 max-w-5xl mx-auto w-full">
+
+    <!-- Loading -->
+    <div id="loadingText" class="mb-6"></div>
+
+    <!-- Main -->
+    <div id="mainContent" class="hidden">
+
+      <!-- Hero -->
+      <div class="mb-12">
+        <h1 class="text-4xl neon">
+          al3x<span class="cursor"></span>
+        </h1>
+        <p class="text-green-300 mt-2">
+          software developer // builder // problem solver
+        </p>
+      </div>
+
+      <!-- Grid Layout -->
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- 1. Status -->
+        <div class="hidden-section">
+          <p class="neon mb-2">&gt; system_status</p>
+          <div class="border border-green-500 p-4 rounded-lg glow-box">
+            <p>location: somewhere coding</p>
+            <p>status: building things</p>
+            <p>uptime: 21 years</p>
+          </div>
+        </div>
+
+        <!-- 2. Music -->
+        <div class="hidden-section">
+          <p class="neon mb-2">&gt; now_playing</p>
+          <div class="border border-green-500 p-4 rounded-lg glow-box">
+            <a href="https://www.youtube.com/watch?v=R9eC3WBRKeY" target="_blank" class="hover:text-white">
+              "Era" - Tevvez
+            </a>
+            <p class="text-green-300">status: locked in</p>
+          </div>
+        </div>
+
+        <!-- 3. Projects -->
+        <div class="hidden-section">
+          <p class="neon mb-2">&gt; ls featured_projects</p>
+          <div class="border border-green-500 p-4 rounded-lg glow-box">
+            <p>project_one</p>
+            <p class="text-green-300 text-sm">short description</p>
+          </div>
+        </div>
+
+        <!-- 4. Blog -->
+        <div class="hidden-section">
+          <p class="neon mb-2">&gt; cat latest_post.txt</p>
+          <div class="border border-green-500 p-4 rounded-lg glow-box">
+            <p>my_first_post.md</p>
+            <p class="text-green-300 text-sm">
+              building this portfolio...
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-12 pb-6 text-center text-sm text-green-600 opacity-70">
+    <p>&gt; © 2026 al3x // catsoncars.work</p>
+  </footer>
+
+  <script>
+    const lines = [
+      "> initializing system...",
+      "> loading developer profile...",
+      "> welcome to catsoncars.work"
+    ];
+
+    let index = 0;
+    const container = document.getElementById("loadingText");
+
+    function typeLine(line, callback) {
+      let i = 0;
+      const p = document.createElement("p");
+      container.appendChild(p);
+
+      function typing() {
+        if (i < line.length) {
+          p.textContent += line[i];
+          i++;
+          setTimeout(typing, 25);
+        } else {
+          setTimeout(callback, 300);
+        }
+      }
+
+      typing();
+    }
+
+    function startTyping() {
+      if (index < lines.length) {
+        typeLine(lines[index], () => {
+          index++;
+          startTyping();
+        });
+      } else {
+        setTimeout(() => {
+          container.classList.add("fade-out");
+        }, 500);
+
+        setTimeout(() => {
+          container.style.display = "none";
+          document.getElementById("mainContent").classList.remove("hidden");
+          revealSections();
+        }, 1200);
+      }
+    }
+
+    function revealSections() {
+      const sections = document.querySelectorAll(".hidden-section");
+
+      sections.forEach((section, i) => {
+        setTimeout(() => {
+          section.classList.add("fade-in");
+        }, i * 350);
+      });
+    }
+
+    startTyping();
+  </script>
+
+</body>
+</html>
