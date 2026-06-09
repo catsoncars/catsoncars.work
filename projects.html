@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Under Construction | catsoncars.work</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Courier New", monospace;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #050505;
+      color: #00ff9f;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(0, 255, 159, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .logo {
+      color: #00ff9f;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00ff9f;
+    }
+
+    nav a {
+      color: #00ff9f;
+      text-decoration: none;
+      margin-left: 20px;
+      opacity: 0.8;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      text-shadow: 0 0 8px #00ff9f;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .construction-box {
+      max-width: 750px;
+      width: 100%;
+      border: 1px solid rgba(0, 255, 159, 0.4);
+      border-radius: 14px;
+      padding: 40px;
+      background: rgba(0, 255, 159, 0.04);
+      box-shadow: 0 0 30px rgba(0, 255, 159, 0.08);
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .terminal-top {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .red {
+      background: #ff5f57;
+    }
+
+    .yellow {
+      background: #ffbd2e;
+    }
+
+    .green {
+      background: #28c840;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 12px #00ff9f;
+    }
+
+    .typing {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .status {
+      margin: 25px 0;
+      padding: 18px;
+      border: 1px dashed rgba(0, 255, 159, 0.35);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      text-align: left;
+    }
+
+    .status p {
+      margin: 10px 0;
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+    }
+
+    .home-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 22px;
+      border: 1px solid #00ff9f;
+      border-radius: 8px;
+      color: #00ff9f;
+      text-decoration: none;
+      transition: 0.25s;
+    }
+
+    .home-btn:hover {
+      background: #00ff9f;
+      color: #050505;
+      box-shadow: 0 0 18px #00ff9f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.85rem;
+      opacity: 0.6;
+      border-top: 1px solid rgba(0, 255, 159, 0.15);
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 650px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .construction-box {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="logo">catsoncars.work</a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="construction-box">
+      <div class="terminal-top">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+
+      <h1>Page Under Construction</h1>
+
+      <p class="typing">
+        &gt; Loading new content...<br>
+        &gt; Building something better for this page<span class="blink">_</span>
+      </p>
+
+      <div class="status">
+        <p>[status] Work in progress</p>
+        <p>[update] This page is currently being redesigned</p>
+        <p>[eta] Coming soon</p>
+      </div>
+
+      <a href="index.html" class="home-btn">Return to Homepage</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 catsoncars.work — still compiling...
+  </footer>
+</body>
+</html>
