@@ -62,6 +62,15 @@
         transform: translateY(0);
       }
     }
+
+    .tag {
+      border: 1px solid #22c55e;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.4rem;
+      color: #00ff9f;
+      display: inline-block;
+      margin: 0.2rem;
+    }
   </style>
 </head>
 
@@ -69,7 +78,9 @@
 
   <!-- Top Bar -->
   <div class="flex justify-between px-4 py-2 border-b border-green-500">
-    <div class="neon text-sm">catsoncars.work</div>
+    <a href="index.html" class="neon text-sm hover:text-white">
+      catsoncars.work
+    </a>
 
     <div class="flex gap-6 text-sm">
       <a href="projects.html" class="neon hover:text-white">[ ./projects ]</a>
@@ -79,7 +90,7 @@
   </div>
 
   <!-- Content -->
-  <div class="flex-grow p-6 max-w-5xl mx-auto w-full">
+  <div class="flex-grow p-6 max-w-6xl mx-auto w-full">
 
     <!-- Loading -->
     <div id="loadingText" class="mb-6"></div>
@@ -89,55 +100,144 @@
 
       <!-- Hero -->
       <div class="mb-12">
-        <h1 class="text-4xl neon">
+        <p class="text-green-300 mb-2">&gt; user_found</p>
+        <h1 class="text-5xl neon">
           al3x<span class="cursor"></span>
         </h1>
-        <p class="text-green-300 mt-2">
-          software developer // builder // problem solver
+        <p class="text-green-300 mt-3">
+          computer science student // web builder // security-aware learner
         </p>
       </div>
 
-      <!-- Grid Layout -->
+      <!-- Main Grid -->
       <div class="grid md:grid-cols-2 gap-8">
 
-        <!-- 1. Status -->
+        <!-- Status -->
         <div class="hidden-section">
           <p class="neon mb-2">&gt; system_status</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box">
-            <p>location: somewhere coding</p>
-            <p>status: building things</p>
-            <p>uptime: 21 years</p>
+          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-1">
+            <p><span class="text-green-300">status:</span> building things</p>
+            <p><span class="text-green-300">mode:</span> locked in</p>
+            <p><span class="text-green-300">availability:</span> open to projects</p>
           </div>
         </div>
 
-        <!-- 2. Music -->
+        <!-- Music -->
         <div class="hidden-section">
           <p class="neon mb-2">&gt; now_playing</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box">
+          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-1">
             <a href="https://www.youtube.com/watch?v=R9eC3WBRKeY" target="_blank" class="hover:text-white">
               "Era" - Tevvez
             </a>
-            <p class="text-green-300">status: locked in</p>
+            <p class="text-green-300">current mood: focused</p>
           </div>
         </div>
 
-        <!-- 3. Projects -->
+        <!-- Featured Project -->
         <div class="hidden-section">
-          <p class="neon mb-2">&gt; ls featured_projects</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box">
-            <p>project_one</p>
-            <p class="text-green-300 text-sm">short description</p>
-          </div>
-        </div>
-
-        <!-- 4. Blog -->
-        <div class="hidden-section">
-          <p class="neon mb-2">&gt; cat latest_post.txt</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box">
-            <p>my_first_post.md</p>
+          <p class="neon mb-2">&gt; featured_project</p>
+          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
+            <p class="text-lg">catsoncars.work</p>
             <p class="text-green-300 text-sm">
-              building this portfolio...
+              Terminal-inspired developer portfolio built with HTML, Tailwind, and JavaScript animations.
             </p>
+            <p class="text-green-300 text-sm">
+              tech: html / tailwind / javascript
+            </p>
+            <div class="pt-2 flex gap-4 text-sm">
+              <a href="projects.html" class="neon hover:text-white">[ view_more ]</a>
+              <a href="#" class="neon hover:text-white">[ github ]</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog -->
+        <div class="hidden-section">
+          <p class="neon mb-2">&gt; latest_post</p>
+          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
+            <p>building_this_portfolio.md</p>
+            <p class="text-green-300 text-sm">
+              Notes on making a terminal-style portfolio and learning frontend development.
+            </p>
+            <a href="blog.html" class="neon hover:text-white text-sm">[ read_blog ]</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Whoami -->
+      <div class="mt-12 hidden-section">
+        <p class="neon mb-3">&gt; whoami</p>
+
+        <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
+          <p><span class="text-green-300">name:</span> al3x</p>
+
+          <p>
+            <span class="text-green-300">education:</span>
+            computer science student @ london university
+          </p>
+
+          <p>
+            <span class="text-green-300">focus:</span>
+            building clean, interactive web experiences
+          </p>
+
+          <p>
+            <span class="text-green-300">open_to:</span>
+            projects / collaborations / freelance work / learning opportunities
+          </p>
+
+          <p>
+            <span class="text-green-300">current_work:</span>
+            migrating projects to github & improving deployment workflows
+          </p>
+
+          <p>
+            <span class="text-green-300">goal:</span>
+            become a strong full-stack developer with security awareness
+          </p>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="mt-12 hidden-section">
+        <p class="neon mb-3">&gt; tech_stack</p>
+
+        <div class="border border-green-500 p-4 rounded-lg glow-box">
+          <span class="tag">html</span>
+          <span class="tag">css</span>
+          <span class="tag">tailwind</span>
+          <span class="tag">javascript</span>
+          <span class="tag">python</span>
+          <span class="tag">git</span>
+          <span class="tag">github</span>
+          <span class="tag">cloudflare</span>
+          <span class="tag">web security</span>
+        </div>
+      </div>
+
+      <!-- Recent Activity + Current Focus -->
+      <div class="grid md:grid-cols-2 gap-8 mt-12">
+
+        <div class="hidden-section">
+          <p class="neon mb-3">&gt; recent_activity</p>
+
+          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
+            <p>- building catsoncars.work</p>
+            <p>- migrating older projects to github</p>
+            <p>- learning tailwind + javascript animations</p>
+            <p>- exploring web security concepts in safe test environments</p>
+          </div>
+        </div>
+
+        <div class="hidden-section">
+          <p class="neon mb-3">&gt; current_focus</p>
+
+          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
+            <p><span class="text-green-300">frontend:</span> clean UI, animations, responsive design</p>
+            <p><span class="text-green-300">workflow:</span> git, github, deployment pipelines</p>
+            <p><span class="text-green-300">security:</span> learning web vulnerabilities & safe testing practices</p>
+            <p><span class="text-green-300">note:</span> using this site to test new things I learn</p>
           </div>
         </div>
 
@@ -156,6 +256,8 @@
     const lines = [
       "> initializing system...",
       "> loading developer profile...",
+      "> fetching portfolio data...",
+      "> loading security-aware dev environment...",
       "> welcome to catsoncars.work"
     ];
 
@@ -205,7 +307,7 @@
       sections.forEach((section, i) => {
         setTimeout(() => {
           section.classList.add("fade-in");
-        }, i * 350);
+        }, i * 300);
       });
     }
 
