@@ -1,318 +1,1144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>catsoncars.work</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <title>Alex / al3x — Web & App Production</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #040816;
+      --bg-soft: #07111f;
+      --card: rgba(15, 23, 42, 0.72);
+      --card-solid: #0f172a;
+      --border: rgba(148, 163, 184, 0.16);
+      --blue: #2563eb;
+      --blue-light: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --muted-2: #64748b;
+      --white: #ffffff;
+      --radius: 24px;
+      --shadow: 0 24px 80px rgba(37, 99, 235, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.28), transparent 34rem),
+        radial-gradient(circle at 80% 15%, rgba(56, 189, 248, 0.16), transparent 28rem),
+        linear-gradient(180deg, #040816 0%, #020617 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .neon {
-      color: #00ff9f;
-      text-shadow: 0 0 5px #00ff9f, 0 0 12px #00ff9f;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+      pointer-events: none;
+      z-index: -1;
     }
 
-    .cursor::after {
-      content: "_";
-      animation: blink 1s infinite;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .fade-out {
-      animation: fadeOut 0.8s forwards;
+    /* NAVBAR */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(4, 8, 22, 0.72);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
     }
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .glow-box {
-      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      font-size: 1.25rem;
     }
 
-    .glow-box:hover {
-      box-shadow: 0 0 15px #00ff9f;
+    .logo span {
+      color: var(--blue-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-button {
+      padding: 11px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: white !important;
+      box-shadow: 0 12px 38px rgba(37, 99, 235, 0.35);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 92px 0 74px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 13px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(15, 23, 42, 0.55);
+      border-radius: 999px;
+      color: #bae6fd;
+      font-size: 0.86rem;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue-light);
+      box-shadow: 0 0 18px var(--blue-light);
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(3rem, 7vw, 5.9rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 15%, #93c5fd 55%, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 38px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 21px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
       transform: translateY(-2px);
     }
 
-    .hidden-section {
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: white;
+      box-shadow: 0 18px 44px rgba(37, 99, 235, 0.34);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.55);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 15px 18px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.52);
+      border: 1px solid var(--border);
+      min-width: 138px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    /* HERO VISUAL */
+
+    .visual-wrap {
+      position: relative;
+    }
+
+    .visual-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 4rem 1rem 2rem;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.38), transparent 62%);
+      filter: blur(40px);
+      z-index: -1;
+    }
+
+    .dashboard {
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.9)),
+        radial-gradient(circle at 20% 0%, rgba(37, 99, 235, 0.25), transparent 32rem);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .dashboard-top {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.35);
+    }
+
+    .dashboard-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .screen {
+      min-height: 390px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(37, 99, 235, 0.34), transparent 15rem),
+        linear-gradient(135deg, rgba(30, 41, 59, 0.58), rgba(2, 6, 23, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .mock-title {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .mock-pill {
+      font-size: 0.75rem;
+      color: #bae6fd;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      background: rgba(37, 99, 235, 0.16);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 15px;
+    }
+
+    .mock-card {
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(2, 6, 23, 0.45);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .mock-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .bars {
+      height: 120px;
+      display: flex;
+      align-items: end;
+      gap: 9px;
+      padding-top: 20px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 999px 999px 4px 4px;
+      background: linear-gradient(180deg, var(--blue-light), var(--blue));
+      opacity: 0.85;
+    }
+
+    .bar:nth-child(1) { height: 38%; }
+    .bar:nth-child(2) { height: 55%; }
+    .bar:nth-child(3) { height: 42%; }
+    .bar:nth-child(4) { height: 78%; }
+    .bar:nth-child(5) { height: 64%; }
+    .bar:nth-child(6) { height: 92%; }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .mini-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+    }
+
+    .floating-card {
+      position: absolute;
+      right: 16px;
+      bottom: 18px;
+      width: min(280px, calc(100% - 32px));
+      padding: 17px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.34);
+    }
+
+    .floating-card p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+      margin-top: 7px;
+    }
+
+    /* SHARED SECTIONS */
+
+    section {
+      padding: 84px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 42px;
+    }
+
+    .section-heading h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .intro-strip {
+      padding: 32px 0 48px;
+    }
+
+    .strip-card {
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.48);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .strip-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 780px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      color: #bfdbfe;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* SERVICES */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .service-card,
+    .work-card,
+    .process-card {
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.75), rgba(2, 6, 23, 0.75));
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .service-card:hover,
+    .work-card:hover,
+    .process-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.32);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -70px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.26), transparent 70%);
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.35), rgba(56, 189, 248, 0.12));
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      margin-bottom: 22px;
+      font-size: 1.35rem;
+    }
+
+    .service-card h3,
+    .process-card h3,
+    .work-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .service-card p,
+    .process-card p,
+    .work-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .service-list li {
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .service-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--blue-light);
+      box-shadow: 0 0 14px var(--blue-light);
+      flex: 0 0 auto;
+    }
+
+    /* PROCESS */
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-number {
+      color: var(--blue-light);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 800;
+      margin-bottom: 18px;
+      display: inline-block;
+    }
+
+    /* PORTFOLIO PREVIEW */
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .work-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-type {
+      color: #bfdbfe;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .work-link {
+      color: var(--blue-light);
+      font-weight: 700;
+      font-size: 0.93rem;
+    }
+
+    .center-action {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding-bottom: 96px;
+    }
+
+    .cta-card {
+      text-align: center;
+      border-radius: 32px;
+      padding: 64px 28px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.42), transparent 32rem),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.95));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-card h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 18px;
+    }
+
+    .cta-card p {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      padding: 28px 0;
+      color: var(--muted-2);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* ANIMATION */
+
+    .reveal {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(18px);
+      animation: reveal 0.8s ease forwards;
     }
 
-    .fade-in {
-      animation: fadeIn 0.6s forwards;
-    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
 
-    @keyframes fadeIn {
+    @keyframes reveal {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .tag {
-      border: 1px solid #22c55e;
-      padding: 0.25rem 0.6rem;
-      border-radius: 0.4rem;
-      color: #00ff9f;
-      display: inline-block;
-      margin: 0.2rem;
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero {
+        padding-top: 64px;
+      }
+
+      .hero-grid,
+      .strip-card {
+        grid-template-columns: 1fr;
+      }
+
+      .visual-wrap {
+        order: -1;
+      }
+
+      .services-grid,
+      .process-grid,
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tags {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .mobile-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 16px;
+        background: rgba(15, 23, 42, 0.96);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 14px;
+        border-radius: 12px;
+      }
+
+      .nav-button {
+        text-align: center;
+      }
+
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .screen {
+        min-height: 430px;
+      }
+
+      .mock-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-card {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        min-width: auto;
+      }
+
+      section {
+        padding: 64px 0;
+      }
     }
   </style>
 </head>
 
-<body class="bg-black text-green-400 min-h-screen flex flex-col">
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">alex<span>/al3x</span></a>
 
-  <!-- Top Bar -->
-  <div class="flex justify-between px-4 py-2 border-b border-green-500">
-    <a href="index.html" class="neon text-sm hover:text-white">
-      catsoncars.work
-    </a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation">
+        ☰
+      </button>
 
-    <div class="flex gap-6 text-sm">
-      <a href="projects.html" class="neon hover:text-white">[ ./projects ]</a>
-      <a href="blog.html" class="neon hover:text-white">[ ./blog ]</a>
-      <a href="about.html" class="neon hover:text-white">[ ./contact ]</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="nav-button">Let’s Talk</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <!-- Content -->
-  <div class="flex-grow p-6 max-w-6xl mx-auto w-full">
-
-    <!-- Loading -->
-    <div id="loadingText" class="mb-6"></div>
-
-    <!-- Main -->
-    <div id="mainContent" class="hidden">
-
-      <!-- Hero -->
-      <div class="mb-12">
-        <p class="text-green-300 mb-2">&gt; user_found</p>
-        <h1 class="text-5xl neon">
-          al3x<span class="cursor"></span>
-        </h1>
-        <p class="text-green-300 mt-3">
-          computer science student // web builder // security-aware learner
-        </p>
-      </div>
-
-      <!-- Main Grid -->
-      <div class="grid md:grid-cols-2 gap-8">
-
-        <!-- Status -->
-        <div class="hidden-section">
-          <p class="neon mb-2">&gt; system_status</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-1">
-            <p><span class="text-green-300">status:</span> building things</p>
-            <p><span class="text-green-300">mode:</span> locked in</p>
-            <p><span class="text-green-300">availability:</span> open to projects</p>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Web & app production
           </div>
-        </div>
 
-        <!-- Music -->
-        <div class="hidden-section">
-          <p class="neon mb-2">&gt; now_playing</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-1">
-            <a href="https://www.youtube.com/watch?v=R9eC3WBRKeY" target="_blank" class="hover:text-white">
-              "Era" - Tevvez
-            </a>
-            <p class="text-green-300">current mood: focused</p>
+          <h1>
+            Building modern
+            <span class="gradient-text">digital products.</span>
+          </h1>
+
+          <p class="hero-text">
+            Hi, I’m Alex — a Computer Science student focused on creating clean,
+            modern websites and mobile app concepts for people, businesses, and
+            new project ideas.
+          </p>
+
+          <div class="hero-actions">
+            <a href="portfolio.html" class="btn btn-primary">View Portfolio</a>
+            <a href="contact.html" class="btn btn-secondary">Contact Me</a>
           </div>
-        </div>
 
-        <!-- Featured Project -->
-        <div class="hidden-section">
-          <p class="neon mb-2">&gt; featured_project</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
-            <p class="text-lg">catsoncars.work</p>
-            <p class="text-green-300 text-sm">
-              Terminal-inspired developer portfolio built with HTML, Tailwind, and JavaScript animations.
-            </p>
-            <p class="text-green-300 text-sm">
-              tech: html / tailwind / javascript
-            </p>
-            <div class="pt-2 flex gap-4 text-sm">
-              <a href="projects.html" class="neon hover:text-white">[ view_more ]</a>
-              <a href="#" class="neon hover:text-white">[ github ]</a>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>Websites</strong>
+              <span>Responsive modern builds</span>
+            </div>
+
+            <div class="stat">
+              <strong>Apps</strong>
+              <span>Mobile-first concepts</span>
+            </div>
+
+            <div class="stat">
+              <strong>Design</strong>
+              <span>Clean UI & user flows</span>
             </div>
           </div>
         </div>
 
-        <!-- Blog -->
-        <div class="hidden-section">
-          <p class="neon mb-2">&gt; latest_post</p>
-          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
-            <p>building_this_portfolio.md</p>
-            <p class="text-green-300 text-sm">
-              Notes on making a terminal-style portfolio and learning frontend development.
+        <div class="visual-wrap reveal delay-2">
+          <div class="dashboard">
+            <div class="dashboard-top">
+              <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <span class="dashboard-label">project-preview</span>
+            </div>
+
+            <div class="screen">
+              <div class="mock-header">
+                <div class="mock-title">Digital Build Dashboard</div>
+                <div class="mock-pill">Available for ideas</div>
+              </div>
+
+              <div class="mock-grid">
+                <div class="mock-card">
+                  <h3>Project activity</h3>
+                  <div class="bars">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </div>
+                </div>
+
+                <div class="mock-card">
+                  <h3>Services</h3>
+
+                  <div class="mini-list">
+                    <div class="mini-row">
+                      <span class="mini-icon"></span>
+                      <span>Website Production</span>
+                    </div>
+
+                    <div class="mini-row">
+                      <span class="mini-icon"></span>
+                      <span>App Production</span>
+                    </div>
+
+                    <div class="mini-row">
+                      <span class="mini-icon"></span>
+                      <span>UI Planning</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="floating-card">
+                <strong>From idea to launch</strong>
+                <p>
+                  Clean structure, modern design, and practical development for
+                  websites and app foundations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <section class="intro-strip">
+      <div class="container">
+        <div class="strip-card reveal">
+          <p>
+            I create digital products that are simple to use, visually polished,
+            and built with purpose. Whether it is a personal portfolio, a business
+            landing page, or the foundation for a mobile app, I focus on making
+            the final product feel clean, modern, and practical.
+          </p>
+
+          <div class="tags">
+            <span class="tag">UK-based</span>
+            <span class="tag">Computer Science</span>
+            <span class="tag">Websites</span>
+            <span class="tag">Mobile Apps</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>Services I Offer</h2>
+          <p>
+            I help bring digital ideas to life through modern website production
+            and mobile app production.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal delay-1">
+            <div class="service-icon">🌐</div>
+            <h3>Website Production</h3>
+            <p>
+              Modern, responsive websites designed for individuals, businesses,
+              portfolios, and digital project ideas.
             </p>
-            <a href="blog.html" class="neon hover:text-white text-sm">[ read_blog ]</a>
+
+            <ul class="service-list">
+              <li>Personal websites and portfolios</li>
+              <li>Business landing pages</li>
+              <li>Responsive mobile-friendly layouts</li>
+              <li>Clean design and simple navigation</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal delay-2">
+            <div class="service-icon">📱</div>
+            <h3>App Production</h3>
+            <p>
+              Mobile app concepts and early-stage builds designed around clear
+              user flows, modern interfaces, and practical functionality.
+            </p>
+
+            <ul class="service-list">
+              <li>App idea planning</li>
+              <li>Mobile interface design</li>
+              <li>iOS and Android app foundations</li>
+              <li>Prototype-style app development</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section>
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>How I Work</h2>
+          <p>
+            A simple process for turning your idea into something structured,
+            modern, and usable.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card reveal delay-1">
+            <span class="step-number">01</span>
+            <h3>Share the idea</h3>
+            <p>
+              We start with what you want to build, who it is for, and what the
+              website or app needs to do.
+            </p>
+          </article>
+
+          <article class="process-card reveal delay-2">
+            <span class="step-number">02</span>
+            <h3>Plan the design</h3>
+            <p>
+              I shape the layout, user flow, pages, sections, and visual style so
+              the product feels clear and modern.
+            </p>
+          </article>
+
+          <article class="process-card reveal delay-3">
+            <span class="step-number">03</span>
+            <h3>Build and refine</h3>
+            <p>
+              The idea becomes a working digital product, then gets improved with
+              feedback and final polish.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO PREVIEW -->
+    <section>
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>Selected Work</h2>
+          <p>
+            A quick preview of projects, experiments, and digital ideas. The full
+            collection will live on the portfolio page.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card reveal delay-1">
+            <div>
+              <div class="work-type">Personal Website</div>
+              <h3>catsoncars.work</h3>
+              <p>
+                A personal website and digital space for projects, notes, and
+                development progress.
+              </p>
+            </div>
+
+            <a href="portfolio.html" class="work-link">View project →</a>
+          </article>
+
+          <article class="work-card reveal delay-2">
+            <div>
+              <div class="work-type">App Concept</div>
+              <h3>FirstService</h3>
+              <p>
+                A service marketplace idea focused on connecting people with
+                trusted local service providers.
+              </p>
+            </div>
+
+            <a href="portfolio.html" class="work-link">View project →</a>
+          </article>
+
+          <article class="work-card reveal delay-3">
+            <div>
+              <div class="work-type">UI Experiments</div>
+              <h3>Digital Tools</h3>
+              <p>
+                Small interface experiments, scripts, and layouts built while
+                learning and testing new ideas.
+              </p>
+            </div>
+
+            <a href="portfolio.html" class="work-link">View project →</a>
+          </article>
+        </div>
+
+        <div class="center-action reveal">
+          <a href="portfolio.html" class="btn btn-secondary">See Full Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-card reveal">
+          <h2>Have an idea for a website or app?</h2>
+          <p>
+            Let’s turn it into something modern, clean, and useful. Whether you
+            need a website, app concept, or digital product foundation, I can help
+            shape and build it.
+          </p>
+
+          <div class="hero-actions" style="justify-content: center; margin-bottom: 0;">
+            <a href="contact.html" class="btn btn-primary">Start a Project</a>
+            <a href="portfolio.html" class="btn btn-secondary">View My Work</a>
           </div>
         </div>
-
       </div>
+    </section>
+  </main>
 
-      <!-- Whoami -->
-      <div class="mt-12 hidden-section">
-        <p class="neon mb-3">&gt; whoami</p>
-
-        <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
-          <p><span class="text-green-300">name:</span> al3x</p>
-
-          <p>
-            <span class="text-green-300">education:</span>
-            computer science student @ london university
-          </p>
-
-          <p>
-            <span class="text-green-300">focus:</span>
-            building clean, interactive web experiences
-          </p>
-
-          <p>
-            <span class="text-green-300">open_to:</span>
-            projects / collaborations / freelance work / learning opportunities
-          </p>
-
-          <p>
-            <span class="text-green-300">current_work:</span>
-            migrating projects to github & improving deployment workflows
-          </p>
-
-          <p>
-            <span class="text-green-300">goal:</span>
-            become a strong full-stack developer with security awareness
-          </p>
-        </div>
-      </div>
-
-      <!-- Tech Stack -->
-      <div class="mt-12 hidden-section">
-        <p class="neon mb-3">&gt; tech_stack</p>
-
-        <div class="border border-green-500 p-4 rounded-lg glow-box">
-          <span class="tag">html</span>
-          <span class="tag">css</span>
-          <span class="tag">tailwind</span>
-          <span class="tag">javascript</span>
-          <span class="tag">python</span>
-          <span class="tag">git</span>
-          <span class="tag">github</span>
-          <span class="tag">cloudflare</span>
-          <span class="tag">web security</span>
-        </div>
-      </div>
-
-      <!-- Recent Activity + Current Focus -->
-      <div class="grid md:grid-cols-2 gap-8 mt-12">
-
-        <div class="hidden-section">
-          <p class="neon mb-3">&gt; recent_activity</p>
-
-          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
-            <p>- building catsoncars.work</p>
-            <p>- migrating older projects to github</p>
-            <p>- learning tailwind + javascript animations</p>
-            <p>- exploring web security concepts in safe test environments</p>
-          </div>
-        </div>
-
-        <div class="hidden-section">
-          <p class="neon mb-3">&gt; current_focus</p>
-
-          <div class="border border-green-500 p-4 rounded-lg glow-box space-y-2">
-            <p><span class="text-green-300">frontend:</span> clean UI, animations, responsive design</p>
-            <p><span class="text-green-300">workflow:</span> git, github, deployment pipelines</p>
-            <p><span class="text-green-300">security:</span> learning web vulnerabilities & safe testing practices</p>
-            <p><span class="text-green-300">note:</span> using this site to test new things I learn</p>
-          </div>
-        </div>
-
-      </div>
-
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 Alex / al3x. All rights reserved.</p>
+      <p>Websites · Apps · Digital Products</p>
     </div>
-
-  </div>
-
-  <!-- Footer -->
-  <footer class="mt-12 pb-6 text-center text-sm text-green-600 opacity-70">
-    <p>&gt; © 2026 al3x // catsoncars.work</p>
   </footer>
 
   <script>
-    const lines = [
-      "> initializing system...",
-      "> loading developer profile...",
-      "> fetching portfolio data...",
-      "> loading security-aware dev environment...",
-      "> welcome to catsoncars.work"
-    ];
+    const mobileToggle = document.getElementById("mobileToggle");
+    const navLinks = document.getElementById("navLinks");
 
-    let index = 0;
-    const container = document.getElementById("loadingText");
+    mobileToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
 
-    function typeLine(line, callback) {
-      let i = 0;
-      const p = document.createElement("p");
-      container.appendChild(p);
-
-      function typing() {
-        if (i < line.length) {
-          p.textContent += line[i];
-          i++;
-          setTimeout(typing, 25);
-        } else {
-          setTimeout(callback, 300);
-        }
-      }
-
-      typing();
-    }
-
-    function startTyping() {
-      if (index < lines.length) {
-        typeLine(lines[index], () => {
-          index++;
-          startTyping();
-        });
-      } else {
-        setTimeout(() => {
-          container.classList.add("fade-out");
-        }, 500);
-
-        setTimeout(() => {
-          container.style.display = "none";
-          document.getElementById("mainContent").classList.remove("hidden");
-          revealSections();
-        }, 1200);
-      }
-    }
-
-    function revealSections() {
-      const sections = document.querySelectorAll(".hidden-section");
-
-      sections.forEach((section, i) => {
-        setTimeout(() => {
-          section.classList.add("fade-in");
-        }, i * 300);
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
       });
-    }
-
-    startTyping();
+    });
   </script>
-
 </body>
 </html>
