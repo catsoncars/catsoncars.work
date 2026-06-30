@@ -4,6 +4,1081 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>catsoncars.work — Alexandra Costin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #030712;
+      --bg-2: #050b18;
+      --card: rgba(15, 23, 42, 0.78);
+      --card-2: rgba(8, 15, 31, 0.9);
+      --border: rgba(148, 163, 184, 0.16);
+      --border-blue: rgba(56, 189, 248, 0.24);
+      --blue: #2563eb;
+      --blue-light: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --muted-2: #64748b;
+      --radius: 26px;
+      --shadow: 0 24px 80px rgba(37, 99, 235, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 10% 8%, rgba(37, 99, 235, 0.24), transparent 32rem),
+        radial-gradient(circle at 82% 28%, rgba(56, 189, 248, 0.14), transparent 28rem),
+        linear-gradient(180deg, var(--bg) 0%, #020617 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(3, 7, 18, 0.78);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .logo span {
+      color: var(--blue-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-button {
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: white !important;
+      box-shadow: 0 16px 42px rgba(37, 99, 235, 0.36);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.72);
+      color: var(--text);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 96px 0 74px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 58px;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.8rem, 5.8vw, 5.1rem);
+      line-height: 1.02;
+      letter-spacing: -0.07em;
+      margin-bottom: 26px;
+      max-width: 620px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 10%, #93c5fd 48%, #38bdf8 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-bottom: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: white;
+      box-shadow: 0 18px 44px rgba(37, 99, 235, 0.34);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.55);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .skill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 660px;
+    }
+
+    .skill-pill {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      color: #bfdbfe;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .planner-wrap {
+      position: relative;
+    }
+
+    .planner-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 5rem 2rem 2rem;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.32), transparent 66%);
+      filter: blur(44px);
+      z-index: -1;
+    }
+
+    .planner {
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(37, 99, 235, 0.2), transparent 26rem),
+        linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.92));
+      box-shadow: var(--shadow);
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .planner-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .planner-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .planner-status {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      color: #bae6fd;
+      background: rgba(37, 99, 235, 0.14);
+      font-size: 0.76rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .planner-text {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-size: 0.96rem;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .option-btn {
+      cursor: pointer;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      background: rgba(2, 6, 23, 0.48);
+      color: var(--text);
+      text-align: left;
+      border-radius: 18px;
+      padding: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.32);
+    }
+
+    .option-btn.active {
+      background: rgba(37, 99, 235, 0.18);
+      border-color: rgba(56, 189, 248, 0.5);
+    }
+
+    .option-btn strong {
+      display: block;
+      font-size: 0.94rem;
+      margin-bottom: 6px;
+    }
+
+    .option-btn span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .output-card {
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      background: rgba(2, 6, 23, 0.58);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .output-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .output-top h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.22rem;
+      letter-spacing: -0.04em;
+    }
+
+    .output-chip {
+      color: var(--blue-light);
+      font-size: 0.78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .deliverables {
+      display: grid;
+      gap: 12px;
+    }
+
+    .deliverable {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .deliverable::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue-light);
+      box-shadow: 0 0 14px var(--blue-light);
+      flex: 0 0 auto;
+    }
+
+    section {
+      padding: 86px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 44px;
+    }
+
+    .section-heading h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      line-height: 1;
+      letter-spacing: -0.065em;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card,
+    .process-card,
+    .work-card {
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.76), rgba(2, 6, 23, 0.76));
+      border-radius: var(--radius);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .service-card:hover,
+    .process-card:hover,
+    .work-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.32);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -70px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.26), transparent 70%);
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.35), rgba(56, 189, 248, 0.12));
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: #bfdbfe;
+    }
+
+    .service-card h3,
+    .process-card h3,
+    .work-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .service-card p,
+    .process-card p,
+    .work-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .service-list li {
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .service-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--blue-light);
+      box-shadow: 0 0 14px var(--blue-light);
+      flex: 0 0 auto;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-number {
+      color: var(--blue-light);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 900;
+      margin-bottom: 18px;
+      display: inline-block;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .work-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-type {
+      color: #bfdbfe;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .work-link {
+      color: var(--blue-light);
+      font-weight: 800;
+      font-size: 0.93rem;
+    }
+
+    .center-action {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .cta {
+      padding-bottom: 96px;
+    }
+
+    .cta-card {
+      text-align: center;
+      border-radius: 34px;
+      padding: 66px 30px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.42), transparent 34rem),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.95));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-card h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 18px;
+    }
+
+    .cta-card p {
+      max-width: 640px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      padding: 28px 0;
+      color: var(--muted-2);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: reveal 0.8s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        padding-top: 70px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .planner-wrap {
+        order: -1;
+      }
+
+      .process-grid,
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .mobile-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 16px;
+        background: rgba(15, 23, 42, 0.96);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 14px;
+        border-radius: 12px;
+      }
+
+      .nav-button {
+        text-align: center;
+      }
+
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .hero {
+        padding: 54px 0 50px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 13vw, 4.1rem);
+        line-height: 1.04;
+        max-width: 100%;
+      }
+
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .planner-header,
+      .output-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .cta {
+        padding-bottom: 70px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">catsoncars<span>.work</span></a>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation">
+        ☰
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html" class="nav-button">Let’s Talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <h1>
+            Websites, apps &
+            <span class="gradient-text">secure systems.</span>
+          </h1>
+
+          <p class="hero-text">
+            I’m Alexandra Costin, a Computer Science graduate working across
+            website design, app production, backend development, cybersecurity
+            and ethical penetration testing. I build clean, responsive and practical
+            digital products with strong structure, modern interfaces and reliable
+            functionality.
+          </p>
+
+          <p class="hero-text">
+            My technical skills include Java, React, Python, backend systems,
+            full-stack development, web application security and pentesting
+            methodology. I focus on creating digital products that are
+            user-friendly, scalable and built with security in mind from the start.
+          </p>
+
+          <div class="hero-actions">
+            <a href="portfolio.html" class="btn btn-primary">View Portfolio</a>
+            <a href="contact.html" class="btn btn-secondary">Let’s Talk</a>
+          </div>
+
+          <div class="skill-row">
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Backend</span>
+            <span class="skill-pill">Full Stack</span>
+            <span class="skill-pill">Cybersecurity</span>
+            <span class="skill-pill">Pentesting</span>
+          </div>
+        </div>
+
+        <div class="planner-wrap reveal delay-2">
+          <div class="planner">
+            <div class="planner-header">
+              <h2 class="planner-title">Project Builder</h2>
+              <span class="planner-status">Interactive preview</span>
+            </div>
+
+            <p class="planner-text">
+              Choose what you want to build and see the type of work I can help
+              plan, design, develop or review from a security perspective.
+            </p>
+
+            <div class="option-grid">
+              <button class="option-btn active" data-type="website">
+                <strong>Website</strong>
+                <span>Portfolio, business site or landing page</span>
+              </button>
+
+              <button class="option-btn" data-type="app">
+                <strong>Mobile App</strong>
+                <span>App concept, interface and foundation</span>
+              </button>
+
+              <button class="option-btn" data-type="backend">
+                <strong>Backend</strong>
+                <span>Data, logic, APIs and functionality</span>
+              </button>
+
+              <button class="option-btn" data-type="pentesting">
+                <strong>Pentesting</strong>
+                <span>Authorised testing and security review</span>
+              </button>
+            </div>
+
+            <div class="output-card">
+              <div class="output-top">
+                <h3 id="outputTitle">Website Production</h3>
+                <span class="output-chip" id="outputChip">Design + Build</span>
+              </div>
+
+              <div class="deliverables" id="deliverables">
+                <div class="deliverable">Responsive page design</div>
+                <div class="deliverable">Clean user experience</div>
+                <div class="deliverable">Frontend build and structure</div>
+                <div class="deliverable">Launch-ready layout</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>What I Offer</h2>
+          <p>
+            I help turn ideas into clean, modern and reliable digital products,
+            from visual design and backend functionality to authorised penetration
+            testing and security-focused improvements.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal delay-1">
+            <div class="service-icon">WEB</div>
+            <h3>Website Production</h3>
+            <p>
+              Modern, responsive websites designed for individuals, businesses,
+              portfolios, landing pages and digital project ideas.
+            </p>
+
+            <ul class="service-list">
+              <li>Personal websites and portfolios</li>
+              <li>Business landing pages</li>
+              <li>Responsive mobile-friendly layouts</li>
+              <li>Frontend and backend functionality</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal delay-2">
+            <div class="service-icon">APP</div>
+            <h3>App Production</h3>
+            <p>
+              Mobile app concepts and early-stage builds designed around clear
+              user flows, clean interfaces and practical functionality.
+            </p>
+
+            <ul class="service-list">
+              <li>App idea planning</li>
+              <li>Mobile interface design</li>
+              <li>iOS and Android app foundations</li>
+              <li>Prototype-style app development</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal delay-3">
+            <div class="service-icon">PEN</div>
+            <h3>Penetration Testing</h3>
+            <p>
+              Authorised security testing for websites and applications, focused
+              on identifying weaknesses and improving the overall security of a
+              digital product.
+            </p>
+
+            <ul class="service-list">
+              <li>Web application security review</li>
+              <li>Authorised vulnerability testing</li>
+              <li>Authentication and access checks</li>
+              <li>Clear findings and improvement guidance</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>How I Work</h2>
+          <p>
+            A simple process for turning an idea into something structured,
+            modern, secure and usable.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card reveal delay-1">
+            <span class="step-number">01</span>
+            <h3>Understand the idea</h3>
+            <p>
+              I start by understanding what you want to build, who it is for,
+              what the goals are and what the product needs to do.
+            </p>
+          </article>
+
+          <article class="process-card reveal delay-2">
+            <span class="step-number">02</span>
+            <h3>Plan and design</h3>
+            <p>
+              I shape the structure, pages, user flow and visual direction so the
+              product feels clear, modern and easy to use.
+            </p>
+          </article>
+
+          <article class="process-card reveal delay-3">
+            <span class="step-number">03</span>
+            <h3>Build and secure</h3>
+            <p>
+              I develop the product, connect the required functionality, review
+              the security side and improve the final result with polish.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>Selected Work</h2>
+          <p>
+            A quick preview of projects, experiments and digital ideas. The full
+            collection will live on the portfolio page.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card reveal delay-1">
+            <div>
+              <div class="work-type">Personal Website</div>
+              <h3>catsoncars.work</h3>
+              <p>
+                A personal website and digital space for projects, notes,
+                development progress and portfolio work.
+              </p>
+            </div>
+
+            <a href="portfolio.html" class="work-link">View project →</a>
+          </article>
+
+          <article class="work-card reveal delay-2">
+            <div>
+              <div class="work-type">App Concept</div>
+              <h3>FirstService</h3>
+              <p>
+                A service marketplace idea focused on connecting people with
+                trusted local service providers.
+              </p>
+            </div>
+
+            <a href="portfolio.html" class="work-link">View project →</a>
+          </article>
+
+          <article class="work-card reveal delay-3">
+            <div>
+              <div class="work-type">Security & Development</div>
+              <h3>Full-Stack Experiments</h3>
+              <p>
+                Interface experiments, scripts, backend ideas and security-focused
+                practice built while developing technical skills.
+              </p>
+            </div>
+
+            <a href="portfolio.html" class="work-link">View project →</a>
+          </article>
+        </div>
+
+        <div class="center-action reveal">
+          <a href="portfolio.html" class="btn btn-secondary">See Full Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-card reveal">
+          <h2>Have an idea for a website, app or security review?</h2>
+          <p>
+            Let’s turn it into something modern, clean and useful. Whether you
+            need a website, app concept, backend functionality or authorised
+            penetration testing, I can help shape, build and improve it.
+          </p>
+
+          <div class="hero-actions" style="justify-content: center; margin-bottom: 0;">
+            <a href="contact.html" class="btn btn-primary">Start a Project</a>
+            <a href="portfolio.html" class="btn btn-secondary">View My Work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 Alexandra Costin. All rights reserved.</p>
+      <p>catsoncars.work · Websites · Apps · Pentesting</p>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById("mobileToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    mobileToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    const projectData = {
+      website: {
+        title: "Website Production",
+        chip: "Design + Build",
+        deliverables: [
+          "Responsive page design",
+          "Clean user experience",
+          "Frontend build and structure",
+          "Launch-ready layout"
+        ]
+      },
+      app: {
+        title: "App Production",
+        chip: "UX + Prototype",
+        deliverables: [
+          "App idea planning",
+          "Screen structure and user flows",
+          "Mobile interface design",
+          "iOS and Android foundation"
+        ]
+      },
+      backend: {
+        title: "Backend Development",
+        chip: "Logic + Systems",
+        deliverables: [
+          "Database structure",
+          "Server-side functionality",
+          "API planning and integration",
+          "Authentication and data handling"
+        ]
+      },
+      pentesting: {
+        title: "Penetration Testing",
+        chip: "Test + Improve",
+        deliverables: [
+          "Authorised web app testing",
+          "Vulnerability and weakness review",
+          "Authentication and access checks",
+          "Clear findings and improvement guidance"
+        ]
+      }
+    };
+
+    const optionButtons = document.querySelectorAll(".option-btn");
+    const outputTitle = document.getElementById("outputTitle");
+    const outputChip = document.getElementById("outputChip");
+    const deliverables = document.getElementById("deliverables");
+
+    optionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        optionButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const selected = projectData[button.dataset.type];
+
+        outputTitle.textContent = selected.title;
+        outputChip.textContent = selected.chip;
+
+        deliverables.innerHTML = selected.deliverables
+          .map((item) => `<div class="deliverable">${item}</div>`)
+          .join("");
+      });
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Alex / al3x — Web & App Production</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
